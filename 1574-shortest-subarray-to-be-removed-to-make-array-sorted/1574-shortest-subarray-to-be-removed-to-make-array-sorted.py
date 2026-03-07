@@ -3,23 +3,27 @@ class Solution:
 
         if arr == sorted(arr):
             return 0
-
         length = len(arr)
-        end = length-1
-        start =  end
-        for index in range(len(arr)-2 , -1 ,-1):
-            if arr[index] > arr[index+1]:
+        backarr = []
+
+        for index in range(len(arr)-1 , -1 ,-1):
+            if backarr and arr[index] > backarr[-1]:
                 break
-            start = index
+            backarr.append(arr[index])
 
-        ans = length - (end - start + 1)
+        backarr.reverse() # this reverse it in a inplace. 
 
+        ans = length - len(backarr)
+
+        print(backarr)
 
         def findmeindex(num):
+            start , end = 0 , len(backarr)-1
             ans = -1
             while start <= end:
                 mid = (start + end )//2
-                if arr[mid] >= num:
+    
+                if backarr[mid] >= num:
                     ans = mid
                     end = mid -1
                 else:
@@ -39,9 +43,6 @@ class Solution:
                 ans = min(ans , length - (i+1))
         return ans 
         
-        #tc = N*log(len(backarr))) + NlogN --- > O(NlogN)
-
-
 
 
 
