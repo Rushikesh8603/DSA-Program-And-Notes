@@ -6,21 +6,33 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        self.flag = True
+        
+        def check_height(node):
+            if node is None:
+                return 0
+                
+            # 1. Check Left (and short-circuit if unbalanced)
+            left_height = check_height(node.left)
+            if left_height == -1:
+                return -1
+                
+            # 2. Check Right (and short-circuit if unbalanced)
+            right_height = check_height(node.right)
+            if right_height == -1:
+                return -1
+                
+            # 3. Check current node's balance
+            if abs(left_height - right_height) > 1:
+                return -1
+                
+            # 4. If balanced, return actual height
+            return max(left_height, right_height) + 1
+            
+        # If the root returns -1, the tree is unbalanced. 
+        # Any other number means it is balanced.
+        return check_height(root) != -1
 
-        def height(root):
-            if root == None:
-                return 0 
-            left = height(root.left)
-            right = height(root.right)
-            if max(left , right ) - min(left , right ) > 1:
-                self.flag = False
-            return max(left , right) + 1 
-        height(root)
-        return self.flag
-    
-
-
+        
 
 
 
