@@ -6,35 +6,29 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if p == None and q == None:
+            return True
 
-        self.contaner = []
-        def traverse(root):
-            if root == None:
-                self.contaner.append('none')
-                return 
+        if p == None or q == None :
+            return False
 
-            self.contaner.append(root.val)
-            
-            left = traverse(root.left)
-            right = traverse(root.right)
-        traverse(p)
-        print("arr1", self.contaner)
-        arr1 = self.contaner.copy()
+        if p.val != q.val :
+            return False
 
-        self.contaner.clear()
-        
-        traverse(q)
-        
-        return self.contaner == arr1
-        
-        
+        left = self.isSameTree(p.left , q.left)
+        right = self.isSameTree(p.right , q.right)
 
-
-
+        if left == False or  right == False:
+            return False
+        else:
+            return True
     
 
 
 
 
+    
 
         
+        
+
