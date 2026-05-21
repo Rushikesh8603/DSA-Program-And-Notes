@@ -10,24 +10,33 @@ class Solution:
         def FindPathSum(root ,targetSum, total):
 
             if root == None:
-                return None
+                return False
 
-            total += root.val
+            total+=root.val
 
-            left = FindPathSum(root.left , targetSum , total)
-            if left == True:
-                return True
+            if root.left == None and root.right == None:
+                if total == targetSum:
+                    return True
+                else:
+                    return False
 
-            right = FindPathSum(root.right , targetSum , total)
-            if right == True :
-                return True
+            left = FindPathSum(root.left, targetSum , total)
+            
+            right = FindPathSum(root.right, targetSum , total)
 
-            if left == None and right == None and total == targetSum:
-                return True 
-            return False
-        ans = FindPathSum(root , targetSum , 0)
-        if ans == None:return False
-        return ans
+            return left or right
+
+        return FindPathSum(root, targetSum , 0)
+    
+
+
+            
+        
+
+
+    
+
+            
     
     
             
