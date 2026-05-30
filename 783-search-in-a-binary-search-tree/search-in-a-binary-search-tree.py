@@ -12,15 +12,16 @@ class Solution:
 
         if root.val == val:
             return root
-
-        left = self.searchBST(root.left , val)
-        if left is not None:
-            return left 
-        right = self.searchBST(root.right, val)
-        if right is not None:
-            return right
+        if root.val > val :
+            left = self.searchBST(root.left , val)
+            if left is not None:
+                return left 
+        else:
+            right = self.searchBST(root.right, val)
+            if right is not None:
+                return right
         
-        return left or right 
+        return 
 
 
     
