@@ -6,29 +6,21 @@
 #         self.right = right
 class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
-
-        def evaluate(root):
             if root is None:
                 return root
-
-            right = evaluate(root.right)
-            left = evaluate(root.left)
-
+            right = self.evaluateTree(root.right)
+            left = self.evaluateTree(root.left)
 
             if root.val == 3:
-                return left and right 
+                return bool(left) and bool(right) 
             if root.val == 2:
-                return left or right 
+                return bool(left) or bool(right) 
             
-            return root.val 
+            return bool(root.val) 
 
-        ans = evaluate(root)
-        if ans == 1 :
-            return True
-        else:
-            return False
-        
-
+    #tc = 0(N) N is the numbre of nodes of the given tree
+    #sc = 0(H) H is hte height of the given tree 
+    
 
             
 
