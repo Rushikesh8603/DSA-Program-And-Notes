@@ -8,6 +8,15 @@ class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
             if root is None:
                 return root
+
+            if root.val == 2 and (root.left == 1 or root.right == 1 ):
+                return True
+
+            if root.val == 3 and (root.left == 0 or root.right == 0 ):
+                return False
+
+        
+
             right = self.evaluateTree(root.right)
             left = self.evaluateTree(root.left)
 
