@@ -13,23 +13,18 @@ class Solution:
         def Traverse(root):
             if root is None:
                 return
-            Traverse(root.right)
+            Traverse(root.left)
             self.ans = min(self.ans ,abs(root.val - self.temp))
             self.temp = root.val
-        
-            Traverse(root.left)
-            return 
-
+            Traverse(root.right)
         Traverse(root)
         return self.ans
     
-    #tc = sc = 0(N) n is hte number of node in the tree 
+    #tc = 0(N) n is hte number of node in the tree
+    #sc = 0(H) h is hte hegiht of tree 
     
-    
-    
-    
-    
-        
+
+    #give verdict
 
             
             
