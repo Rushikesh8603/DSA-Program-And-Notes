@@ -8,20 +8,22 @@ class Solution:
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
         self.ans = float('inf')
         arr = []
+        self.temp = float('inf')
 
         def Traverse(root):
-
             if root is None:
                 return
             Traverse(root.right)
-            arr.append(root.val)
-            if len(arr) >= 2:
-                self.ans = min(self.ans , abs(arr[-1]- arr[-2]))
+            self.ans = min(self.ans ,abs(root.val - self.temp))
+            self.temp = root.val
+        
             Traverse(root.left)
             return 
 
         Traverse(root)
         return self.ans
+    
+    #tc = sc = 0(N) n is hte number of node in the tree 
     
     
     
